@@ -19,3 +19,4 @@ public class Agua extends Pokemon {
         adversario.receberDano(dano);
     }
 }
+//oi tudo bem?
