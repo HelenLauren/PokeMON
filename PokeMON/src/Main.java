@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         inicializarPokemons();
         inicializarPokemonsInimigos();
-        exibirMenuJogo();
+        exibirMenuInicial();
     }
 
     private static void inicializarPokemons() {
@@ -31,7 +31,36 @@ public class Main {
             }
         }
     }
+    private static void exibirMenuInicial() {
+        while (true) {
+            System.out.println("\n--- PokéMON - Menu Inicial ---");
+            System.out.println("1. Iniciar");
+            System.out.println("2. Como jogar?");
+            System.out.println("3. Sair");
 
+            int escolha = scanner.nextInt();
+            scanner.nextLine();
+            switch (escolha) {
+                case 1 -> iniciarTreinador();
+                case 2 -> comoJogar();
+                case 3 -> {
+                    System.out.println("Obrigado por jogar!");
+                    System.exit(0);
+                }
+                default -> System.out.println("Escolha inválida.");
+            }
+        }
+    }
+    private static void iniciarTreinador() {
+        System.out.println(x: "Qual seu nome treinador(a)?");
+        String nome = scanner.nextLine();
+        try {
+            if (nome.length() > 12) 
+                throw new StringTooLong(msg: "Nome nao aceito");
+            System.out.println("Olá"+ nome);
+            exibirMenuJogo();
+        }
+    }
     private static void exibirMenuJogo() {
         while (true) {
             System.out.println("\n--- Menu de Jogo ---");
