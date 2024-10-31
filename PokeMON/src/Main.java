@@ -14,6 +14,7 @@ public class Main {
         inicializarPokemons();
         inicializarPokemonsInimigos();
         exibirMenuInicial();
+
     }
 
     private static void inicializarPokemons() {
@@ -55,6 +56,8 @@ public class Main {
     }
 
     private static void comoJogar() {
+        FileManager fm = new FileManager("./text/comoJogar.txt");
+        fm.lerArquivoScanner();
     }
 
     private static void iniciarTreinador() {
