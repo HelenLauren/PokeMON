@@ -1,3 +1,5 @@
+package PokeMON.src;
+
 import java.util.Random;
 
 public class Planta extends Pokemon {

@@ -1,3 +1,5 @@
+package PokeMON.src;
+
 public abstract class Pokemon {
     protected String nome;
     protected int hp;

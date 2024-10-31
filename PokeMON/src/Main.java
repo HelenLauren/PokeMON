@@ -1,3 +1,5 @@
+package PokeMON.src;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,7 +10,7 @@ public class Main {
     private static List<Pokemon> pokemons = new ArrayList<>();
     private static List<Pokemon> pokemonsInimigos = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception  {
         inicializarPokemons();
         inicializarPokemonsInimigos();
         exibirMenuInicial();
@@ -51,14 +53,19 @@ public class Main {
             }
         }
     }
+
+    private static void comoJogar() {
+    }
+
     private static void iniciarTreinador() {
-        System.out.println(x: "Qual seu nome treinador(a)?");
+        System.out.println("Qual seu nome treinador(a)?");
         String nome = scanner.nextLine();
         try {
-            if (nome.length() > 12) 
-                throw new StringTooLong(msg: "Nome nao aceito");
-            System.out.println("Olá"+ nome);
+            if (nome.length() > 12) throw new StringTooLong("Nome não aceito");
+            System.out.println("Olá "+ nome);
             exibirMenuJogo();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
         }
     }
     private static void exibirMenuJogo() {
