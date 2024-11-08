@@ -1,5 +1,7 @@
 package PokeMON.src;
 
+import java.util.Random;
+
 public abstract class Pokemon {
     protected String nome;
     protected int hp;
@@ -12,8 +14,27 @@ public abstract class Pokemon {
         this.ataque = ataque;
         this.tipo = tipo;
     }
+    // Método para ataque normal
+    public void ataqueNormal(Pokemon adversario) {
+        int dano = 50;
+        System.out.println(nome + " ataca com um ataque normal e causa " + dano + " de dano em " + adversario.getNome() + "!");
+        adversario.receberDano(dano);
+    }
 
+    // Método para ataque especial (a ser implementado pelas subclasses)
     public abstract void ataqueEspecial(Pokemon adversario);
+
+    // Método para escolher aleatoriamente entre ataque normal e especial
+    public void escolherAtaque(Pokemon adversario) {
+        Random random = new Random();
+        int escolha = random.nextInt(2);  // 0 para ataque normal, 1 para ataque especial
+
+        if (escolha == 0) {
+            ataqueNormal(adversario);
+        } else {
+            ataqueEspecial(adversario);
+        }
+    }
 
     // Método para calcular dano com base nas vantagens de tipo
     public int calcularDano(Pokemon adversario) {
