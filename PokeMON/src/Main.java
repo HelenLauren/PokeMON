@@ -77,14 +77,16 @@ public class Main {
             System.out.println("\n--- Menu de Jogo ---");
             System.out.println("1. Batalhar");
             System.out.println("2. Ver Pokémons");
-            System.out.println("3. Sair");
+            System.out.println("3. Loja");
+            System.out.println("4. Sair");
 
             int escolha = scanner.nextInt();
             scanner.nextLine();
             switch (escolha) {
                 case 1 -> batalhar();
                 case 2 -> verPokemons();
-                case 3 -> {
+                case 3 -> lojaMenu();
+                case 4 -> {
                     System.out.println("Obrigado por jogar!");
                     System.exit(0);
                 }
@@ -109,16 +111,19 @@ public class Main {
         Batalha batalha = new Batalha(pokemonsInimigos, pokemons);  // Passando pokemons para o jogador
         batalha.iniciarBatalha(pokemonUsuario);  // Chamando com apenas um argumento
     }
+     private static void lojaMenu() {
+        while (true) {
+            System.out.println("\n--- Loja de Itens ---");
+            loja.exibirItens();
+            System.out.println("\nSeu saldo de moedas: " + jogador.getMoedas()); //diz o saldo
+            System.out.println("Digite o item que você deseja comprar ou 'sair' para voltar:"); //para comprar tem que digitar o nome do item. 
 
-    // Método para gerar um Pokémon aleatório (pode ser adaptado para gerar o boss no futuro)
-    private static Pokemon gerarPokemonAleatorio() {
-        Random random = new Random();
-        int tipoAleatorio = random.nextInt(3); // 0: Fogo, 1: Agua, 2: Planta
-        switch (tipoAleatorio) {
-            case 0: return Fogo.gerarPokemonAleatorio();
-            case 1: return Agua.gerarPokemonAleatorio();
-            case 2: return Planta.gerarPokemonAleatorio();
-            default: return null;  // Nunca deve chegar aqui
+            String itemEscolhido = scanner.nextLine(); //pega pelo q o usuario digitou
+            if (itemEscolhido.equalsIgnoreCase("sair")) { //se for igual 'sair' ele sai
+                return; //volta pro menu inicial.
+            }
+
+            loja.comprarItem(itemEscolhido, jogador.getMoedas());
         }
     }
 

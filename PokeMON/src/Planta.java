@@ -14,6 +14,14 @@ public class Planta extends Pokemon {
         return new Planta(nomes[random.nextInt(nomes.length)], 300, 50);
     }
 
+     public void usarPoção() {
+        usarItem("Poção"); //chama o metodo usar item pelo nome da String entre parenteses.
+    }
+
+    public void usarReviver() {
+        usarItem("Reviver"); 
+    }
+
     @Override
     public void ataqueEspecial(Pokemon adversario) {
         int dano = calcularDano(adversario);

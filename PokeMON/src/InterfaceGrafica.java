@@ -5,7 +5,6 @@ public abstract class InterfaceGrafica {
 
     public static void abrir(JPanel panel){
         frame.add(panel);
-
         frame.setSize(500,200);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);

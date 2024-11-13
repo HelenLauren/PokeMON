@@ -58,10 +58,31 @@ public abstract class Pokemon {
             }
 
         }
-
+    
         return (int) (this.ataque * multiplicador);
     }
 
+    // método para usar itens (poção e reviver)
+     public void usarItem(String item) {
+        switch (item) {
+            case "Poção":
+                if (hp < 300) { 
+                    hp += 50; //recupera 50 de vida somente se o pokemon tiver menos de 300 HP
+                    if (hp > 300) hp = 300;
+                    System.out.println(nome + " usou uma Poção e recuperou 50 HP!");
+                }
+                break;
+            case "Reviver":
+                // Implementação de Reviver (recupera HP para Pokémon que foi derrotado)
+                if (hp == 0) {
+                    hp = 100; 
+                    System.out.println(nome + " foi revivido e agora tem 100 HP!");
+                }
+                break;
+            default:
+                System.out.println("Item desconhecido.");
+        }
+    }
     // Método para aplicar dano
     public void receberDano(int dano) {
         this.hp -= dano;
