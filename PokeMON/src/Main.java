@@ -103,13 +103,13 @@ public class Main {
         }
 
         int escolhaPokemon = scanner.nextInt() - 1;
-        Pokemon pokemonUsuario = pokemons.get(escolhaPokemon);
+        Pokemon pokemonJogador = pokemons.get(escolhaPokemon);
 
         Pokemon pokemonInimigo = gerarPokemonAleatorio();  // Gera o Pokémon aleatório
 
         // Criando uma instância de Batalha e iniciando a batalha
         Batalha batalha = new Batalha(pokemonsInimigos, pokemons);  // Passando pokemons para o jogador
-        batalha.iniciarBatalha(pokemonUsuario);  // Chamando com apenas um argumento
+        batalha.iniciarBatalha(pokemonJogador);  // Chamando com apenas um argumento
     }
      private static void lojaMenu() {
         while (true) {

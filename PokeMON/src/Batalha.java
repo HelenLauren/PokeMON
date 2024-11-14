@@ -29,7 +29,8 @@ public class Batalha {
             System.out.println("Escolha o tipo de ataque:");
             System.out.println("1. Ataque Normal");
             System.out.println("2. Ataque Especial");
-
+            System.out.println("3. Usar item de cura.");
+            
             int escolhaAtaque = scanner.nextInt();
 
             // Jogador escolhe o tipo de ataque
@@ -37,7 +38,24 @@ public class Batalha {
                 pokemonUsuario.ataqueNormal(pokemonInimigo);
             } else if (escolhaAtaque == 2) {
                 pokemonUsuario.ataqueEspecial(pokemonInimigo);
-            } else {
+            } else if (escolhaAtaque == 3) {
+                    System.out.println("Escolha um item de cura:");
+                    if (jogador.temItem("Poção")) System.out.println("1 - Poção");
+                    if (jogador.temItem("Reviver")) System.out.println("2 - Reviver");
+                    
+                    int itemEscolhido = scanner.nextInt();
+
+                    if (itemEscolhido == 1 && jogador.temItem("Poção")) {
+                        jogador.usarItem("Poção", jogador.getPokemon());
+                        continue;
+                    } else if (itemEscolhido == 2 && jogador.temItem("Reviver")) {
+                        jogador.usarItem("Reviver", jogador.getPokemon());
+                        continue;
+                    } else {
+                        System.out.println("Item inválido ou não disponível.");
+                    }
+            }
+            else {
                 System.out.println("Escolha inválida! O Pokémon apenas ataca normalmente.");
                 pokemonUsuario.ataqueNormal(pokemonInimigo);
             }
