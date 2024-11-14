@@ -1,0 +1,14 @@
+--- COMO JOGAR POKéMON ---
+
+OBJETIVO DO JOGO
+   - Derrote Pokémon inimigos em batalhas para capturá-los e expandir seu time.
+   - Torne-se o treinador mais forte, escolhendo e fortalecendo seus Pokémon.
+
+COMO FUNCIONAM AS BATALHAS
+   1. Escolha um Pokémon do seu time para lutar contra um inimigo selecionado aleatoriamente.
+   2. Cada turno, seu Pokémon e o inimigo atacam alternadamente.
+   3. O dano causado depende das características e habilidades de cada Pokémon.
+   4. Se o Pokémon inimigo for derrotado, ele será capturado e adicionado ao seu time.
+   5. Caso seu Pokémon seja derrotado, você perde a batalha, mas pode tentar novamente.
+
+Lembre-se: cada batalha é uma chance de aprender mais sobre as habilidades do seu time. Escolha bem seus Pokémon e prepare-se para a próxima batalha!
