@@ -10,10 +10,12 @@ public class Batalha {
     private Pokemon pokemonUsuario;
     private List<Pokemon> pokemonsInimigos;
     private List<Pokemon> pokemonsJogador;
+    private Jogador jogador;
 
-    public Batalha(List<Pokemon> pokemonsInimigos, List<Pokemon> pokemonsJogador) {
+    public Batalha(List<Pokemon> pokemonsInimigos, List<Pokemon> pokemonsJogador, Jogador jogador) {
         this.pokemonsInimigos = pokemonsInimigos != null ? pokemonsInimigos : new ArrayList<>();
         this.pokemonsJogador = pokemonsJogador != null ? pokemonsJogador : new ArrayList<>();
+        this.jogador = jogador;
     }
 
 
@@ -40,6 +42,7 @@ public class Batalha {
                 pokemonUsuario.ataqueEspecial(pokemonInimigo);
             } else if (escolhaAtaque == 3) {
                     System.out.println("Escolha um item de cura:");
+                    System.out.println("0 - Cancelar");
                     if (jogador.temItem("Poção")) System.out.println("1 - Poção");
                     if (jogador.temItem("Reviver")) System.out.println("2 - Reviver");
                     
@@ -51,7 +54,10 @@ public class Batalha {
                     } else if (itemEscolhido == 2 && jogador.temItem("Reviver")) {
                         jogador.usarItem("Reviver", jogador.getPokemon());
                         continue;
-                    } else {
+                    } else if (itemEscolhido == 0){
+                        continue;
+                    }
+                    else {
                         System.out.println("Item inválido ou não disponível.");
                     }
             }
@@ -65,6 +71,7 @@ public class Batalha {
             if (pokemonInimigo.getHp() <= 0) {
                 System.out.println(pokemonInimigo.getNome() + " foi derrotado!");
                 pokemonsJogador.add(pokemonInimigo);  // Adiciona o Pokémon inimigo à lista do jogador
+                jogador.ganharMoedas(50);
                 return;
             }
 
@@ -75,6 +82,7 @@ public class Batalha {
             // Verificar se o jogador foi derrotado
             if (pokemonUsuario.getHp() <= 0) {
                 System.out.println(pokemonUsuario.getNome() + " foi derrotado! Você perdeu a batalha.");
+                jogador.ganharMoedas(25);
                 break;  // Fim da batalha
             }
         }

@@ -68,6 +68,8 @@ public abstract class Pokemon {
         if (this.hp < 0) this.hp = 0;
     }
 
+
+
     public String getNome() {
         return nome;
     }

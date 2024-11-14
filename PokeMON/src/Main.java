@@ -9,11 +9,13 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
     private static List<Pokemon> pokemons = new ArrayList<>();
     private static List<Pokemon> pokemonsInimigos = new ArrayList<>();
+    private static Jogador jogador;
 
     public static void main(String[] args) throws Exception {
         inicializarPokemons();
         inicializarPokemonsInimigos();
         exibirMenuInicial();
+
     }
 
     private static void inicializarPokemons() {
@@ -66,6 +68,7 @@ public class Main {
         try {
             if (nome.length() > 12) throw new StringTooLong("Nome não aceito");
             System.out.println("Olá " + nome);
+            jogador = new Jogador(nome);
             exibirMenuJogo();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -85,7 +88,7 @@ public class Main {
             switch (escolha) {
                 case 1 -> batalhar();
                 case 2 -> verPokemons();
-                case 3 -> lojaMenu();
+                case 3 -> lojaMenu(jogador);
                 case 4 -> {
                     System.out.println("Obrigado por jogar!");
                     System.exit(0);
@@ -105,27 +108,28 @@ public class Main {
         int escolhaPokemon = scanner.nextInt() - 1;
         Pokemon pokemonJogador = pokemons.get(escolhaPokemon);
 
-        Pokemon pokemonInimigo = gerarPokemonAleatorio();  // Gera o Pokémon aleatório
+       // Pokemon pokemonInimigo = gerarPokemonAleatorio();  // Gera o Pokémon aleatório
 
         // Criando uma instância de Batalha e iniciando a batalha
-        Batalha batalha = new Batalha(pokemonsInimigos, pokemons);  // Passando pokemons para o jogador
+        Batalha batalha = new Batalha(pokemonsInimigos, pokemons, jogador);  // Passando pokemons para o jogador
         batalha.iniciarBatalha(pokemonJogador);  // Chamando com apenas um argumento
     }
-     private static void lojaMenu() {
+    private static void lojaMenu(Jogador jogador) {
+        Loja loja = new Loja();
         while (true) {
             System.out.println("\n--- Loja de Itens ---");
             loja.exibirItens();
-            System.out.println("\nSeu saldo de moedas: " + jogador.getMoedas()); //diz o saldo
-            System.out.println("Digite o item que você deseja comprar ou 'sair' para voltar:"); //para comprar tem que digitar o nome do item. 
+            System.out.println("\nSeu saldo de moedas: " + jogador.getMoedas()); // Diz o saldo
+            System.out.println("Digite o item que você deseja comprar ou 'sair' para voltar:");
 
-            String itemEscolhido = scanner.nextLine(); //pega pelo q o usuario digitou
-            if (itemEscolhido.equalsIgnoreCase("sair")) { //se for igual 'sair' ele sai
-                return; //volta pro menu inicial.
+            String itemEscolhido = scanner.nextLine();
+            if (itemEscolhido.equalsIgnoreCase("sair")) {
+                return;
             }
-
-            loja.comprarItem(itemEscolhido, jogador.getMoedas());
+            loja.comprarItem(itemEscolhido, jogador);  // Passa o jogador para a loja
         }
     }
+
 
     private static void verPokemons() {
         System.out.println("\n--- Seus Pokémon ---");

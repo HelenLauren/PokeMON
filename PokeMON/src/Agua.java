@@ -13,12 +13,12 @@ public class Agua extends Pokemon {
         Random random = new Random();
         return new Agua(nomes[random.nextInt(nomes.length)], 300, 50);
     }
-     public void usarPoção() {
-        usarItem("Poção");  //chama o metodo usar item pelo nome da String entre parenteses.
+     public void usarPoção(Jogador jogador) {
+        jogador.usarItem("Poção", this);  //chama o metodo usar item pelo nome da String entre parenteses.
     }
 
-    public void usarReviver() {
-        usarItem("Reviver");  
+    public void usarReviver(Jogador jogador) {
+        jogador.usarItem("Reviver", this);
     }
     @Override
     public void ataqueEspecial(Pokemon adversario) {

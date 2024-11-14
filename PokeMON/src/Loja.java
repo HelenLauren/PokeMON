@@ -23,23 +23,24 @@ public class Loja {
         }
     }
 
-    public void comprarItem(String item, int moedas) {
-        if (estoque.containsKey(item)) {
-            int preco = estoque.get(item);
-            if (moedas >= preco) {
-                System.out.println("Você comprou " + item + " por " + preco + " moedas!");
-                inventarioJogador.put(item, inventarioJogador.getOrDefault(item, 0) + 1);//Se o item já existe, ele soma 1 ao atual. Se nao, adiciona o item com quantidade inicial igual a 1.
-            } else {
-                System.out.println("Você não tem moedas suficientes para comprar " + item + ".");
-            }
-        } else {
+    public void comprarItem(String item, Jogador jogador) {
+        int preco = estoque.getOrDefault(item, -1); // Verifica se o item está no estoque
+        if (preco == -1) {
             System.out.println("Item não disponível.");
+            return;
+        }
+
+        if (jogador.getMoedas() >= preco) {
+            jogador.ganharMoedas(-preco);  // Deduz o preço das moedas do jogador
+            jogador.adicionarItemAoInventario(item);  // Adiciona o item ao inventário do jogador
+            System.out.println("Você comprou " + item + " por " + preco + " moedas!");
+        } else {
+            System.out.println("Você não tem moedas suficientes para comprar " + item + ".");
         }
     }
 
     public void usarItem(Pokemon pokemon, String item) {
         if (inventarioJogador.containsKey(item) && inventarioJogador.get(item) > 0) {
-            pokemon.usarItem(item);
             inventarioJogador.put(item, inventarioJogador.get(item) - 1); //Reduz o item do inventário.
         } else {
             System.out.println("Você não tem " + item + " no inventário.");

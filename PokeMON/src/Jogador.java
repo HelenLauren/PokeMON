@@ -1,12 +1,16 @@
 package PokeMON.src;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import static PokeMON.src.Main.scanner;
 
 public class Jogador {
     private String nome;
     private int moedas;
     private Map<String, Integer> inventario;
+    private List<Pokemon> pokemons;
 
     // usa nome padrão se não for fornecido
     public Jogador(String nome) {
@@ -55,4 +59,28 @@ public class Jogador {
     public void adicionarItemAoInventario(String item) {
         inventario.put(item, inventario.getOrDefault(item, 0) + 1); // Adiciona o item
     }
+
+    public boolean temItem(String item) {
+        return inventario.getOrDefault(item, 0) > 0;
+    }
+
+    public Pokemon getPokemon() {
+        if (pokemons.isEmpty()) {
+            System.out.println("Você não possui nenhum Pokémon.");
+            return null;
+        }
+        System.out.println("\nEscolha um Pokémon:");
+        for (int i = 0; i < pokemons.size(); i++) {
+            System.out.println((i + 1) + ". " + pokemons.get(i).getNome() + " - HP: " + pokemons.get(i).getHp());
+        }
+        int escolha;
+        do {
+            System.out.print("Digite o número do Pokémon que deseja escolher: ");
+            escolha = scanner.nextInt();
+        } while (escolha < 1 || escolha > pokemons.size());
+
+        return pokemons.get(escolha - 1); // Retorna o Pokémon escolhido
+    }
+
+
 }
